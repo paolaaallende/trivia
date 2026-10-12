@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>12 de Octubre: Día del Respeto a la Diversidad Cultural - Trivia & Estadísticas</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- QRCode.js library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <!-- Chart.js for Live Data Analytics -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#fffbeb',
+              100: '#fef3c7',
+              500: '#d97706',
+              600: '#b45309',
+              700: '#92400e',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #f8fafc;
+      color: #1e293b;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .fade-in {
+      animation: fadeIn 0.35s ease-in-out forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-teal-100 selection:text-teal-900">
+
+  <!-- TOP HEADER / NAVBAR -->
+  <header class="bg-white/90 backdrop-blur-md border-b border-slate-200 sticky top-0 z-30 shadow-sm">
+    <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between gap-2">
+      <div class="flex items-center space-x-3 cursor-pointer" onclick="showSection('registration')">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 via-teal-600 to-amber-700 text-white flex items-center justify-center font-bold text-lg shadow-sm">
+          12
+        </div>
+        <div>
+          <h1 class="text-base font-bold text-slate-800 leading-tight">12 de Octubre</h1>
+          <p class="text-xs font-medium text-slate-500">Diversidad Cultural • Nivel Secundario</p>
+        </div>
+      </div>
+      
+      <div class="flex items-center gap-2">
+        <!-- Cloud Sync Status Indicator -->
+        <div id="cloud-status-badge" class="hidden sm:flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-bold rounded-lg bg-amber-50 text-amber-700 border border-amber-200">
+          <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+          <span id="cloud-status-text">Modo Local</span>
+        </div>
+
+        <!-- Live Statistics Button -->
+        <button id="btn-toggle-stats" onclick="showSection('stats')" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-700 bg-slate-100 border border-slate-200 rounded-lg hover:bg-slate-200 transition">
+          <svg class="w-4 h-4 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+          <span class="hidden sm:inline">Gráficos en Vivo</span>
+          <span id="badge-total-responses" class="bg-teal-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full ml-0.5">0</span>
+        </button>
+
+        <!-- QR Tool Toggle Button -->
+        <button id="btn-open-qr" onclick="openQrModal()" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-teal-700 bg-teal-50 border border-teal-200 rounded-lg hover:bg-teal-100 transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
+          <span class="hidden sm:inline">Código QR</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="max-w-3xl w-full mx-auto px-4 py-6 flex-grow">
+
+    <!-- STEP 1: STUDENT REGISTRATION & INFOGRAPHIC INTRO -->
+    <section id="step-registration" class="fade-in space-y-6">
+      
+      <!-- Hero Banner -->
+      <div class="bg-gradient-to-br from-amber-500 via-teal-600 to-amber-700 rounded-2xl p-6 text-white shadow-lg relative overflow-hidden">
+        <div class="relative z-10 space-y-2">
+          <span class="inline-block text-xs font-extrabold uppercase tracking-wider bg-white/20 px-2.5 py-1 rounded-full backdrop-blur-sm">
+            Revisionismo Histórico & Ciudadanía
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold leading-snug">
+            12 de Octubre: Día del Respeto a la Diversidad Cultural
+          </h2>
+          <p class="text-sm sm:text-base text-amber-50 opacity-95">
+            Recurso educativo interactivo para reflexionar sobre los derechos de los pueblos originarios, el respeto mutuo y la superación de visiones etnocéntricas.
+          </p>
+        </div>
+        <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
+      </div>
+
+      <!-- VISUAL INFOGRAPHIC SUMMARY BEFORE TRIVIA -->
+      <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+        <div class="border-b border-slate-100 pb-3 flex items-center justify-between">
+          <div>
+            <span class="text-[11px] font-bold text-teal-600 uppercase tracking-wider">Síntesis Conceptual</span>
+            <h3 class="text-base font-extrabold text-slate-800">Significado del 12 de Octubre</h3>
+          </div>
+          <span class="px-2.5 py-1 bg-amber-50 text-amber-700 border border-amber-200 text-xs font-bold rounded-lg flex items-center gap-1">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+            Lectura previa
+          </span>
+        </div>
+
+        <!-- Infographic Grid Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+          <!-- Item 1 -->
+          <div class="p-3.5 bg-slate-50 border border-slate-200/80 rounded-xl space-y-1 hover:border-teal-400 transition-colors">
+            <div class="font-bold text-teal-800 flex items-center gap-1.5">
+              <span class="w-5 h-5 rounded-md bg-teal-100 text-teal-700 flex items-center justify-center text-[10px] font-black">1</span>
+              Superar la visión etnocéntrica
+            </div>
+            <p class="text-slate-600 leading-relaxed">Cuestiona relatos únicos para comprender la complejidad del proceso histórico de conquista.</p>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="p-3.5 bg-slate-50 border border-slate-200/80 rounded-xl space-y-1 hover:border-teal-400 transition-colors">
+            <div class="font-bold text-amber-800 flex items-center gap-1.5">
+              <span class="w-5 h-5 rounded-md bg-amber-100 text-amber-700 flex items-center justify-center text-[10px] font-black">2</span>
+              Reconocimiento de preexistencia
+            </div>
+            <p class="text-slate-600 leading-relaxed">La legislación reconoce formalmente la preexistencia étnica y cultural de los pueblos indígenas (Art. 75, Inc. 17).</p>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="p-3.5 bg-slate-50 border border-slate-200/80 rounded-xl space-y-1 hover:border-teal-400 transition-colors">
+            <div class="font-bold text-purple-800 flex items-center gap-1.5">
+              <span class="w-5 h-5 rounded-md bg-purple-100 text-purple-700 flex items-center justify-center text-[10px] font-black">3</span>
+              Valoración de la identidad
+            </div>
+            <p class="text-slate-600 leading-relaxed">Promueve la difusión de lenguas originarias y el análisis de los impactos coloniales.</p>
+          </div>
+
+          <!-- Item 4 -->
+          <div class="p-3.5 bg-slate-50 border border-slate-200/80 rounded-xl space-y-1 hover:border-teal-400 transition-colors">
+            <div class="font-bold text-rose-800 flex items-center gap-1.5">
+              <span class="w-5 h-5 rounded-md bg-rose-100 text-rose-700 flex items-center justify-center text-[10px] font-black">4</span>
+              Cambio de paradigma cultural
+            </div>
+            <p class="text-slate-600 leading-relaxed">Se dejó atrás la noción de "Raza" para evitar enfoques jerárquicos entre culturas.</p>
+          </div>
+        </div>
+
+        <div class="p-3 bg-gradient-to-r from-teal-50 to-amber-50 border border-teal-200/70 rounded-xl flex items-center justify-between gap-3 text-xs text-slate-700">
+          <div class="flex items-center gap-2">
+            <span class="text-xl">🇦🇷</span>
+            <div>
+              <p class="font-bold text-slate-800">Día del Respeto a la Diversidad Cultural</p>
+              <p class="text-[11px] text-slate-500">Nombre oficial fijado en Argentina mediante Decreto Presidencial en el año 2010.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Registration Form -->
+      <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+        <div class="border-b border-slate-100 pb-3">
+          <h3 class="text-lg font-bold text-slate-800">Ingreso del estudiante</h3>
+          <p class="text-xs text-slate-500">Ingresa tus datos para comenzar la trivia interactiva de 10 preguntas.</p>
+        </div>
+
+        <form id="form-student" onsubmit="startQuiz(event)" class="space-y-4">
+          <div>
+            <label for="student-name" class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">
+              Nombre y Apellido <span class="text-rose-500">*</span>
+            </label>
+            <input type="text" id="student-name" required placeholder="Ej. Camila Rodríguez" 
+              class="w-full px-4 py-3 rounded-xl border border-slate-300 text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition text-sm">
+          </div>
+
+          <div>
+            <label for="student-course" class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">
+              Curso y División <span class="text-rose-500">*</span>
+            </label>
+            <select id="student-course" required 
+              class="w-full px-4 py-3 rounded-xl border border-slate-300 text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition text-sm bg-white cursor-pointer">
+              <option value="" disabled selected>Selecciona tu curso...</option>
+              <option value="1° año A">1° año A</option>
+              <option value="1° año B">1° año B</option>
+              <option value="1° año C">1° año C</option>
+              <option value="2° año A">2° año A</option>
+              <option value="2° año B">2° año B</option>
+              <option value="2° año C">2° año C</option>
+              <option value="3° año A">3° año A</option>
+              <option value="3° año B">3° año B</option>
+              <option value="3° año C">3° año C</option>
+              <option value="4° año A">4° año A</option>
+              <option value="4° año B">4° año B</option>
+              <option value="4° año C">4° año C</option>
+              <option value="5° año A">5° año A</option>
+              <option value="5° año B">5° año B</option>
+              <option value="5° año C">5° año C</option>
+              <option value="6° año A">6° año A</option>
+              <option value="6° año B">6° año B</option>
+              <option value="6° año C">6° año C</option>
+              <option value="7° año A">7° año A</option>
+              <option value="7° año B">7° año B</option>
+              <option value="7° año C">7° año C</option>
+            </select>
+          </div>
+
+          <button type="submit" class="w-full py-3.5 px-6 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold text-sm shadow-md hover:shadow-lg transition-all transform active:scale-[0.99] flex items-center justify-center gap-2">
+            <span>Iniciar Trivia Interactiva</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- STEP 2: TRIVIA QUIZ SCREEN -->
+    <section id="step-quiz" class="hidden fade-in space-y-5">
+      <!-- Quiz Progress Header -->
+      <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between gap-4">
+        <div>
+          <span id="display-student-info" class="text-xs font-semibold text-teal-700 block">Estudiante: -</span>
+          <h3 id="question-counter" class="text-sm font-bold text-slate-800">Pregunta 1 de 10</h3>
+        </div>
+        <div class="w-32 bg-slate-100 h-2.5 rounded-full overflow-hidden">
+          <div id="progress-bar" class="bg-teal-600 h-full transition-all duration-300" style="width: 10%;"></div>
+        </div>
+      </div>
+
+      <!-- Question Card -->
+      <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-6">
+        <h2 id="question-text" class="text-base sm:text-lg font-bold text-slate-800 leading-snug">
+          Cargando pregunta...
+        </h2>
+
+        <!-- Answer Options -->
+        <div id="options-container" class="space-y-3">
+          <!-- Options dynamically generated here -->
+        </div>
+
+        <!-- Hint / Rationale Box -->
+        <div id="feedback-box" class="hidden p-4 rounded-xl border text-xs sm:text-sm leading-relaxed transition-all">
+          <div class="font-bold mb-1 flex items-center gap-1.5" id="feedback-title"></div>
+          <p id="feedback-text" class="text-slate-700"></p>
+        </div>
+
+        <!-- Action Button -->
+        <div class="pt-2 flex justify-end">
+          <button id="btn-next" onclick="nextQuestion()" disabled 
+            class="px-6 py-3 rounded-xl bg-slate-200 text-slate-400 font-bold text-sm transition-all cursor-not-allowed">
+            Siguiente Pregunta
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 3: INDIVIDUAL RESULTS SCREEN -->
+    <section id="step-results" class="hidden fade-in space-y-6">
+      <div class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm text-center space-y-5">
+        
+        <div class="w-16 h-16 bg-teal-100 text-teal-700 rounded-full flex items-center justify-center mx-auto text-2xl font-black">
+          ✓
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-extrabold text-slate-800">¡Trivia Completada!</h2>
+          <p id="result-student-name" class="text-sm font-medium text-slate-500 mt-1">Estudiante</p>
+        </div>
+
+        <!-- Score Badge -->
+        <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl inline-block max-w-xs w-full">
+          <span class="text-xs font-bold text-slate-400 uppercase tracking-widest block mb-1">Puntaje Obtenido</span>
+          <div class="text-4xl font-extrabold text-teal-600" id="final-score">0 / 10</div>
+          <p id="score-feedback" class="text-xs font-semibold text-slate-600 mt-2">¡Buen trabajo de reflexión histórica!</p>
+        </div>
+
+        <!-- Detailed Review Accordion -->
+        <div class="text-left space-y-3 pt-4 border-t border-slate-100">
+          <h3 class="text-sm font-bold text-slate-800 uppercase tracking-wider">Resumen de respuestas:</h3>
+          <div id="review-list" class="space-y-2.5 max-h-60 overflow-y-auto pr-1"></div>
+        </div>
+
+        <!-- Action buttons -->
+        <div class="pt-4 flex flex-col sm:flex-row gap-3">
+          <button onclick="showSection('stats')" class="flex-1 py-3 px-4 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs sm:text-sm shadow transition flex items-center justify-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+            Ver Gráficos Generales de la Escuela
+          </button>
+          <button onclick="restartQuiz()" class="flex-1 py-3 px-4 rounded-xl border border-slate-300 text-slate-700 font-bold text-xs sm:text-sm hover:bg-slate-50 transition flex items-center justify-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+            Reiniciar Trivia
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- STEP 4: LIVE STATISTICS & GRAPHICAL DASHBOARD -->
+    <section id="step-stats" class="hidden fade-in space-y-6">
+      
+      <!-- Dashboard Title Banner -->
+      <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <span class="text-xs font-bold text-teal-600 uppercase tracking-wider">Sistematización de Datos</span>
+          <h2 class="text-xl font-extrabold text-slate-800">Resultados y Gráficos en Vivo</h2>
+          <p class="text-xs text-slate-500">Métricas agregadas en tiempo real para análisis y debate docente-estudiante.</p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2 w-full sm:w-auto">
+          <!-- Demo Data Generator Button -->
+          <button onclick="injectDemoResponses()" class="px-3 py-2 text-xs font-bold text-amber-800 bg-amber-50 border border-amber-200 rounded-lg hover:bg-amber-100 transition flex items-center gap-1">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+            Simular Datos de Ejemplo
+          </button>
+
+          <!-- Filter Dropdown -->
+          <div class="w-full sm:w-auto">
+            <label for="filter-course" class="block text-[10px] font-bold uppercase text-slate-500 mb-1">Filtrar por Curso:</label>
+            <select id="filter-course" onchange="renderCharts()" class="w-full sm:w-44 px-3 py-2 text-xs border border-slate-300 rounded-lg bg-slate-50 font-semibold text-slate-700 focus:outline-none focus:ring-2 focus:ring-teal-500">
+              <option value="ALL">Todos los Cursos</option>
+              <option value="1° año A">1° año A</option>
+              <option value="1° año B">1° año B</option>
+              <option value="1° año C">1° año C</option>
+              <option value="2° año A">2° año A</option>
+              <option value="2° año B">2° año B</option>
+              <option value="2° año C">2° año C</option>
+              <option value="3° año A">3° año A</option>
+              <option value="3° año B">3° año B</option>
+              <option value="3° año C">3° año C</option>
+              <option value="4° año A">4° año A</option>
+              <option value="4° año B">4° año B</option>
+              <option value="4° año C">4° año C</option>
+              <option value="5° año A">5° año A</option>
+              <option value="5° año B">5° año B</option>
+              <option value="5° año C">5° año C</option>
+              <option value="6° año A">6° año A</option>
+              <option value="6° año B">6° año B</option>
+              <option value="6° año C">6° año C</option>
+              <option value="7° año A">7° año A</option>
+              <option value="7° año B">7° año B</option>
+              <option value="7° año C">7° año C</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Performance Indicators (KPI Cards) -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-1">
+          <p class="text-xs font-bold text-slate-400 uppercase tracking-wide">Total Respuestas</p>
+          <p id="kpi-total-students" class="text-3xl font-black text-teal-600">0</p>
+          <p class="text-[11px] text-slate-500">Estudiantes registrados</p>
+        </div>
+
+        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-1">
+          <p class="text-xs font-bold text-slate-400 uppercase tracking-wide">Promedio General</p>
+          <p id="kpi-avg-score" class="text-3xl font-black text-amber-600">0 / 10</p>
+          <p class="text-[11px] text-slate-500">Puntaje medio de la trivia</p>
+        </div>
+
+        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-1">
+          <p class="text-xs font-bold text-slate-400 uppercase tracking-wide">Pregunta más Compleja</p>
+          <p id="kpi-hardest-q" class="text-base font-extrabold text-rose-600 truncate">Ninguna aún</p>
+          <p id="kpi-hardest-pct" class="text-[11px] text-slate-500">Menor porcentaje de aciertos</p>
+        </div>
+      </div>
+
+      <!-- Charts Row 1: Questions Accuracy Bar Chart -->
+      <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+        <div class="flex items-center justify-between">
+          <h3 class="text-sm font-bold text-slate-800">Porcentaje de Respuestas Correctas por Pregunta</h3>
+          <span class="text-[10px] font-semibold bg-teal-50 text-teal-700 px-2 py-1 rounded">Interactivo</span>
+        </div>
+        <div class="relative h-64 sm:h-72">
+          <canvas id="chart-questions"></canvas>
+        </div>
+        <p class="text-[11px] text-slate-400 text-center">Permite identificar los temas o conceptos que requieren refuerzo pedagógico en el aula.</p>
+      </div>
+
+      <!-- Charts Row 2: Participation per Course -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+          <h3 class="text-sm font-bold text-slate-800">Participación por Cursos</h3>
+          <div class="relative h-56 flex items-center justify-center">
+            <canvas id="chart-courses"></canvas>
+          </div>
+        </div>
+
+        <!-- Live Student Leaderboard / Feed -->
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3 flex flex-col justify-between">
+          <div>
+            <h3 class="text-sm font-bold text-slate-800 mb-2">Últimos Registros Recibidos</h3>
+            <div id="live-student-list" class="space-y-2 max-h-52 overflow-y-auto pr-1 text-xs">
+              <p class="text-slate-400 text-center py-6">Aún no hay respuestas registradas.</p>
+            </div>
+          </div>
+          <button onclick="showSection('registration')" class="w-full py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-xl transition">
+            Volver al Formulario / Responder
+          </button>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- TEACHER QR CODE MODAL -->
+  <div id="modal-qr" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white max-w-md w-full rounded-2xl p-6 shadow-2xl border border-slate-100 space-y-5 fade-in relative">
+      <button onclick="closeQrModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-lg p-1">✕</button>
+
+      <div>
+        <span class="text-xs font-bold text-teal-600 uppercase tracking-wide">Herramienta Docente</span>
+        <h3 class="text-lg font-extrabold text-slate-800">Generador de Código QR</h3>
+        <p class="text-xs text-slate-500 mt-1">Ingresa la URL pública de esta trivia para que los estudiantes escaneen el QR con sus teléfonos.</p>
+      </div>
+
+      <div class="space-y-3">
+        <label for="input-qr-url" class="block text-xs font-bold text-slate-700 uppercase">URL del Recurso:</label>
+        <div class="flex gap-2">
+          <input type="url" id="input-qr-url" placeholder="https://..." 
+            class="flex-1 px-3 py-2 border border-slate-300 rounded-lg text-xs focus:ring-2 focus:ring-teal-500 focus:outline-none">
+          <button onclick="generateCustomQr()" class="px-4 py-2 bg-teal-600 text-white font-bold text-xs rounded-lg hover:bg-teal-700 transition">
+            Actualizar
+          </button>
+        </div>
+      </div>
+
+      <div class="bg-slate-50 p-4 border border-slate-200 rounded-xl flex flex-col items-center justify-center space-y-3">
+        <div id="qrcode-container" class="bg-white p-3 rounded-lg shadow-sm border border-slate-100"></div>
+        <p class="text-[11px] text-slate-500 text-center">Escanea con la cámara del celular para ingresar a la trivia.</p>
+      </div>
+
+      <div class="flex justify-end">
+        <button onclick="closeQrModal()" class="px-5 py-2 bg-slate-200 text-slate-700 font-bold text-xs rounded-lg hover:bg-slate-300 transition">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-slate-200 py-4 mt-8">
+    <div class="max-w-3xl mx-auto px-4 text-center text-xs text-slate-400 space-y-1">
+      <p class="font-medium text-slate-500">12 de Octubre • Día del Respeto a la Diversidad Cultural</p>
+      <p>Recurso Educativo Digital con Analítica en Vivo • Nivel Secundario</p>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import { getFirestore, collection, addDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+    // App ID & Configuration setup
+    const appId = typeof __app_id !== 'undefined' ? __app_id : 'trivia-12-octubre-secundaria';
+    const hasCloudConfig = typeof __firebase_config !== 'undefined';
+    
+    const firebaseConfig = hasCloudConfig ? JSON.parse(__firebase_config) : {
+      apiKey: "demo-key",
+      authDomain: "demo.firebaseapp.com",
+      projectId: "demo-project",
+      storageBucket: "demo.appspot.com",
+      messagingSenderId: "000000000",
+      appId: "1:000000000:web:000000"
+    };
+
+    let app, auth, db;
+    let responsesCollection;
+    let globalResponsesData = [];
+
+    function setConnectionStatus(isConnected, message) {
+      const badge = document.getElementById("cloud-status-badge");
+      const text = document.getElementById("cloud-status-text");
+      if (!badge || !text) return;
+
+      if (isConnected) {
+        badge.className = "hidden sm:flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-bold rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200";
+        badge.querySelector('span').className = "w-2 h-2 rounded-full bg-emerald-500 animate-pulse";
+        text.textContent = message || "Nube Conectada";
+      } else {
+        badge.className = "hidden sm:flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-bold rounded-lg bg-amber-50 text-amber-700 border border-amber-200";
+        badge.querySelector('span').className = "w-2 h-2 rounded-full bg-amber-500";
+        text.textContent = message || "Modo Dispositivo Local";
+      }
+    }
+
+    // Initialize Firebase
+    async function initFirebase() {
+      try {
+        if (!hasCloudConfig) {
+          console.info("Info: Corriendo fuera del entorno de nube. Guardado local activado.");
+          setConnectionStatus(false, "Modo Local");
+          return;
+        }
+
+        app = initializeApp(firebaseConfig);
+        auth = getAuth(app);
+        db = getFirestore(app);
+
+        // RULE 3: Authenticate FIRST before attached queries
+        if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+          await signInWithCustomToken(auth, __initial_auth_token);
+        } else {
+          await signInAnonymously(auth);
+        }
+
+        // RULE 1: Path for public collaborative class trivia data
+        responsesCollection = collection(db, 'artifacts', appId, 'public', 'data', 'trivia_responses');
+
+        // Realtime listener for responses with mandatory error callback
+        onSnapshot(responsesCollection, (snapshot) => {
+          globalResponsesData = [];
+          snapshot.forEach((doc) => {
+            globalResponsesData.push(doc.data());
+          });
+
+          setConnectionStatus(true, "En vivo (" + globalResponsesData.length + ")");
+
+          if (typeof window.updateTotalBadge === 'function') {
+            window.updateTotalBadge();
+          }
+
+          if (!document.getElementById("step-stats").classList.contains("hidden")) {
+            window.renderCharts();
+          }
+        }, (err) => {
+          console.warn("Firestore snapshot error (Fallback to local mode):", err);
+          setConnectionStatus(false, "Modo Local");
+        });
+
+      } catch (e) {
+        console.warn("Firebase fallback active:", e);
+        setConnectionStatus(false, "Modo Local");
+      }
+    }
+
+    initFirebase();
+
+    // Expose Firestore saver globally
+    window.saveResponseToCloud = async function(responseData) {
+      if (!db || !auth || !auth.currentUser || !responsesCollection) return;
+      try {
+        await addDoc(responsesCollection, {
+          ...responseData,
+          timestamp: new Date().toISOString()
+        });
+      } catch (e) {
+        console.error("Error al guardar en la nube:", e);
+      }
+    };
+
+    // Expose data getter globally
+    window.getGlobalResponses = function() {
+      return globalResponsesData;
+    };
+  </script>
+
+  <script>
+    // TRIVIA QUESTIONS DATA
+    const questionsData = [
+      {
+        id: 1,
+        question: "En Argentina, ¿cómo se denomina actualmente de manera oficial la conmemoración del 12 de octubre según el Decreto presidencial establecido en 2010?",
+        options: [
+          { text: "Día del Respeto a la Diversidad Cultural", isCorrect: true },
+          { text: "Día del Descubrimiento de América", isCorrect: false },
+          { text: "Día de la Raza", isCorrect: false },
+          { text: "Día del Encuentro entre dos Mundos", isCorrect: false }
+        ],
+        explanation: "En 2010, mediante un Decreto presidencial en Argentina, se cambió el nombre a 'Día del Respeto a la Diversidad Cultural' para visibilizar y valorizar la plurinacionalidad y los derechos originarios."
+      },
+      {
+        id: 2,
+        question: "¿Cuál era la denominación histórica original con la que se instauró esta fecha en gran parte de América Latina a comienzos del siglo XX?",
+        options: [
+          { text: "Día de las Indias Tradicionales", isCorrect: false },
+          { text: "Día de la Raza", isCorrect: true },
+          { text: "Día de la Hispanidad de las Naciones", isCorrect: false },
+          { text: "Día de la Conquista Cultural", isCorrect: false }
+        ],
+        explanation: "A inicios del siglo XX se instauró como 'Día de la Raza', una denominación con enfoque eurocéntrico que omitía las perspectivas y sufrimientos de las comunidades preexistentes."
+      },
+      {
+        id: 3,
+        question: "Desde la perspectiva de los derechos humanos y la legislación argentina actual (Art. 75, Inc. 17 de la Constitución Nacional), ¿qué se reconoce expresamente sobre los pueblos indígenas?",
+        options: [
+          { text: "La preexistencia étnica y cultural", isCorrect: true },
+          { text: "Su asimilación total a la cultura nacional", isCorrect: false },
+          { text: "Su estatus exclusivo como comunidades rurales", isCorrect: false },
+          { text: "La tutoría jurídica del Estado nacional", isCorrect: false }
+        ],
+        explanation: "La Reforma Constitucional de 1994 en su Art. 75 Inc. 17 reconoce expresamente la preexistencia étnica y cultural de los pueblos indígenas argentinos."
+      },
+      {
+        id: 4,
+        question: "¿Qué implicancia principal tuvo el cambio conceptual de pasar de celebrar la 'Raza' a promover la 'Diversidad Cultural'?",
+        options: [
+          { text: "Homogeneizar las tradiciones locales", isCorrect: false },
+          { text: "Dejar atrás una visión eurocéntrica y jerárquica", isCorrect: true },
+          { text: "Negar los lazos culturales con Europa", isCorrect: false },
+          { text: "Fomentar el aislamiento entre comunidades", isCorrect: false }
+        ],
+        explanation: "Permitió superar una visión única o eurocéntrica de la historia, reemplazándola por el reconocimiento plural y simétrico de todas las identidades y culturas."
+      },
+      {
+        id: 5,
+        question: "¿Cuál fue una de las consecuencias demográficas e históricas más drásticas para las poblaciones originarias tras el contacto europeo en el siglo XV?",
+        options: [
+          { text: "Un abrupto descenso demográfico y la desestructuración de sus sociedades", isCorrect: true },
+          { text: "Un incremento sostenido de la población autóctona", isCorrect: false },
+          { text: "El mantenimiento intacto de sus estructuras sociales", isCorrect: false },
+          { text: "La migración voluntaria masiva hacia el continente europeo", isCorrect: false }
+        ],
+        explanation: "El proceso de conquista derivó en un colapso demográfico masivo debido a epidemias, trabajo forzado y guerras, modificando drásticamente las comunidades originarias."
+      },
+      {
+        id: 6,
+        question: "¿Qué rol cumple el análisis crítico de las fuentes históricas al abordar la fecha del 12 de octubre en la escuela secundaria?",
+        options: [
+          { text: "Cuestionar relatos únicos para comprender la complejidad", isCorrect: true },
+          { text: "Memorizar exclusivamente relatos oficiales antiguos", isCorrect: false },
+          { text: "Repetir datos numéricos sin análisis interpretativo", isCorrect: false },
+          { text: "Validar una sola postura historiográfica sin debate", isCorrect: false }
+        ],
+        explanation: "El análisis crítico fomenta interrogar múltiples fuentes y voces para construir un conocimiento histórico riguroso, empático y multiperspectivo."
+      },
+      {
+        id: 7,
+        question: "¿A qué se refiere el concepto de 'etnocentrismo' cuando se analiza el proceso de conquista y colonización americana?",
+        options: [
+          { text: "El intercambio equitativo entre diversas sociedades", isCorrect: false },
+          { text: "Juzgar y valorar otra cultura desde los parámetros de la propia", isCorrect: true },
+          { text: "El estudio científico de la geografía autóctona", isCorrect: false },
+          { text: "La coexistencia pacífica entre civilizaciones", isCorrect: false }
+        ],
+        explanation: "El etnocentrismo es la actitud de evaluar a otras culturas tomando la propia cultura como estándar universal de superioridad o 'civilización'."
+      },
+      {
+        id: 8,
+        question: "¿Qué importancia tiene en la actualidad el rescate y la difusión de las lenguas originarias en el ámbito educativo?",
+        options: [
+          { text: "Fortalecer la identidad y el derecho a la transmisión cultural", isCorrect: true },
+          { text: "Reemplazar completamente los idiomas oficiales", isCorrect: false },
+          { text: "Fines únicamente turísticos y comerciales", isCorrect: false },
+          { text: "Mantener esas lenguas reservadas solo para lingüistas", isCorrect: false }
+        ],
+        explanation: "La preservación del lenguaje preserva la cosmovisión, memoria e identidad comunitaria, siendo un derecho humano fundamental protegido por la Ley de Educación."
+      },
+      {
+        id: 9,
+        question: "¿Cuál de las siguientes afirmaciones describe mejor el impacto del sistema de encomiendas y mitas durante el periodo colonial?",
+        options: [
+          { text: "Acuerdos comerciales equitativos de trabajo asalariado", isCorrect: false },
+          { text: "Mecanismos de trabajo forzoso y subordinación económica", isCorrect: true },
+          { text: "Escuelas rurales organizadas por líderes indígenas", isCorrect: false },
+          { text: "Tratados de libre comercio entre coronas europeas", isCorrect: false }
+        ],
+        explanation: "La encomienda y la mita constituyeron instituciones de explotación laboral compulsiva impuestas a los indígenas para beneficio económico del sistema colonial."
+      },
+      {
+        id: 10,
+        question: "En el marco de la ciudadanía digital y global actual, ¿por qué es relevante debatir sobre el 12 de octubre en plataformas e informática?",
+        options: [
+          { text: "Para detectar y combatir sesgos algorítmicos y estereotipos", isCorrect: true },
+          { text: "Para prohibir la difusión de contenidos digitales antiguos", isCorrect: false },
+          { text: "Únicamente para aprender a programar", isCorrect: false },
+          { text: "Para automatizar la creación de textos", isCorrect: false }
+        ],
+        explanation: "Debatir en entornos digitales enseña a los estudiantes a ser críticos frente a prejuicios y estereotipos discriminatorios presentes en la red e inteligencias artificiales."
+      }
+    ];
+
+    // STATE VARIABLES
+    let studentInfo = { name: "", course: "" };
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let studentAnswers = [];
+    let localBackupResponses = [];
+    let chartQuestionsInstance = null;
+    let chartCoursesInstance = null;
+
+    // INITIALIZATION
+    window.addEventListener("DOMContentLoaded", () => {
+      const currentUrl = window.location.href;
+      document.getElementById("input-qr-url").value = currentUrl;
+      initQrCode(currentUrl);
+    });
+
+    // NAVIGATION SYSTEM
+    function showSection(sectionId) {
+      document.getElementById("step-registration").classList.add("hidden");
+      document.getElementById("step-quiz").classList.add("hidden");
+      document.getElementById("step-results").classList.add("hidden");
+      document.getElementById("step-stats").classList.add("hidden");
+
+      if (sectionId === 'registration') {
+        document.getElementById("step-registration").classList.remove("hidden");
+      } else if (sectionId === 'quiz') {
+        document.getElementById("step-quiz").classList.remove("hidden");
+      } else if (sectionId === 'results') {
+        document.getElementById("step-results").classList.remove("hidden");
+      } else if (sectionId === 'stats') {
+        document.getElementById("step-stats").classList.remove("hidden");
+        renderCharts();
+      }
+    }
+
+    // START QUIZ
+    function startQuiz(e) {
+      e.preventDefault();
+      const nameInput = document.getElementById("student-name").value.trim();
+      const courseInput = document.getElementById("student-course").value.trim();
+
+      if (!nameInput || !courseInput) return;
+
+      studentInfo.name = nameInput;
+      studentInfo.course = courseInput;
+
+      document.getElementById("display-student-info").textContent = `${studentInfo.name} • ${studentInfo.course}`;
+      
+      currentQuestionIndex = 0;
+      score = 0;
+      studentAnswers = [];
+
+      showSection('quiz');
+      renderQuestion();
+    }
+
+    // RENDER QUESTION
+    function renderQuestion() {
+      const q = questionsData[currentQuestionIndex];
+      
+      document.getElementById("question-counter").textContent = `Pregunta ${currentQuestionIndex + 1} de ${questionsData.length}`;
+      const progressPercent = ((currentQuestionIndex + 1) / questionsData.length) * 100;
+      document.getElementById("progress-bar").style.width = `${progressPercent}%`;
+
+      document.getElementById("question-text").textContent = q.question;
+
+      const feedbackBox = document.getElementById("feedback-box");
+      feedbackBox.classList.add("hidden");
+
+      const nextBtn = document.getElementById("btn-next");
+      nextBtn.disabled = true;
+      nextBtn.className = "px-6 py-3 rounded-xl bg-slate-200 text-slate-400 font-bold text-sm transition-all cursor-not-allowed";
+      nextBtn.textContent = currentQuestionIndex === questionsData.length - 1 ? "Finalizar Trivia" : "Siguiente Pregunta";
+
+      const optionsContainer = document.getElementById("options-container");
+      optionsContainer.innerHTML = "";
+
+      q.options.forEach((opt, idx) => {
+        const btn = document.createElement("button");
+        btn.className = "w-full text-left p-4 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 font-medium text-xs sm:text-sm text-slate-800 transition-all flex items-start gap-3 shadow-sm hover:border-teal-400";
+        
+        const optionLetter = String.fromCharCode(65 + idx);
+        
+        btn.innerHTML = `
+          <span class="w-6 h-6 rounded-lg bg-slate-100 text-slate-600 font-bold text-xs flex items-center justify-center shrink-0 border border-slate-200">${optionLetter}</span>
+          <span class="leading-snug">${escapeHtml(opt.text)}</span>
+        `;
+
+        btn.onclick = () => selectOption(idx, btn);
+        optionsContainer.appendChild(btn);
+      });
+    }
+
+    // SELECT OPTION
+    function selectOption(selectedIndex, selectedBtn) {
+      const q = questionsData[currentQuestionIndex];
+      const optionsContainer = document.getElementById("options-container");
+      const buttons = optionsContainer.querySelectorAll("button");
+
+      buttons.forEach(btn => btn.disabled = true);
+
+      const isCorrect = q.options[selectedIndex].isCorrect;
+      if (isCorrect) score++;
+
+      studentAnswers.push({
+        questionIndex: currentQuestionIndex,
+        selectedIndex: selectedIndex,
+        isCorrect: isCorrect
+      });
+
+      buttons.forEach((btn, idx) => {
+        const letterSpan = btn.querySelector("span");
+        if (q.options[idx].isCorrect) {
+          btn.className = "w-full text-left p-4 rounded-xl border-2 border-emerald-500 bg-emerald-50/80 text-emerald-900 font-bold text-xs sm:text-sm transition-all flex items-start gap-3 shadow-sm";
+          if (letterSpan) letterSpan.className = "w-6 h-6 rounded-lg bg-emerald-600 text-white font-bold text-xs flex items-center justify-center shrink-0";
+        } else if (idx === selectedIndex && !isCorrect) {
+          btn.className = "w-full text-left p-4 rounded-xl border-2 border-rose-400 bg-rose-50/80 text-rose-900 font-bold text-xs sm:text-sm transition-all flex items-start gap-3 shadow-sm";
+          if (letterSpan) letterSpan.className = "w-6 h-6 rounded-lg bg-rose-600 text-white font-bold text-xs flex items-center justify-center shrink-0";
+        } else {
+          btn.className = "w-full text-left p-4 rounded-xl border border-slate-200 bg-slate-50/50 opacity-60 text-slate-500 font-normal text-xs sm:text-sm flex items-start gap-3";
+        }
+      });
+
+      const feedbackBox = document.getElementById("feedback-box");
+      const feedbackTitle = document.getElementById("feedback-title");
+      const feedbackText = document.getElementById("feedback-text");
+
+      feedbackBox.classList.remove("hidden");
+      if (isCorrect) {
+        feedbackBox.className = "p-4 rounded-xl border border-emerald-200 bg-emerald-50 text-emerald-900 text-xs sm:text-sm leading-relaxed fade-in";
+        feedbackTitle.innerHTML = `<span class="text-emerald-700 font-bold">✓ Respuesta Correcta</span>`;
+      } else {
+        feedbackBox.className = "p-4 rounded-xl border border-rose-200 bg-rose-50 text-rose-900 text-xs sm:text-sm leading-relaxed fade-in";
+        feedbackTitle.innerHTML = `<span class="text-rose-700 font-bold">✕ Respuesta Incorrecta</span>`;
+      }
+      feedbackText.textContent = q.explanation;
+
+      const nextBtn = document.getElementById("btn-next");
+      nextBtn.disabled = false;
+      nextBtn.className = "px-6 py-3 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold text-sm shadow-md transition-all cursor-pointer transform active:scale-95";
+    }
+
+    // NEXT QUESTION
+    function nextQuestion() {
+      if (currentQuestionIndex < questionsData.length - 1) {
+        currentQuestionIndex++;
+        renderQuestion();
+      } else {
+        finishQuiz();
+      }
+    }
+
+    // FINISH QUIZ & SAVE RESPONSES
+    function finishQuiz() {
+      showSection('results');
+
+      document.getElementById("result-student-name").textContent = `${studentInfo.name} (${studentInfo.course})`;
+      document.getElementById("final-score").textContent = `${score} / ${questionsData.length}`;
+
+      const scoreMsg = document.getElementById("score-feedback");
+      if (score >= 9) {
+        scoreMsg.textContent = "¡Excelente! Comprensión profunda del análisis histórico y crítico.";
+        if (typeof confetti === 'function') confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+      } else if (score >= 6) {
+        scoreMsg.textContent = "¡Muy buen trabajo! Has comprendido los conceptos principales.";
+      } else {
+        scoreMsg.textContent = "Buen intento. Te invitamos a repasar los conceptos clave para seguir aprendiendo.";
+      }
+
+      // Render Answer Breakdown
+      const reviewList = document.getElementById("review-list");
+      reviewList.innerHTML = "";
+
+      studentAnswers.forEach((ans, index) => {
+        const q = questionsData[ans.questionIndex];
+        const isCorrect = ans.isCorrect;
+
+        const item = document.createElement("div");
+        item.className = `p-3 rounded-xl border text-xs leading-snug flex items-start justify-between gap-3 ${
+          isCorrect ? "bg-emerald-50/60 border-emerald-200 text-emerald-900" : "bg-rose-50/60 border-rose-200 text-rose-900"
+        }`;
+
+        item.innerHTML = `
+          <div>
+            <p class="font-bold mb-0.5">${index + 1}. ${escapeHtml(q.question)}</p>
+            <p class="opacity-80">Respuesta: <span class="font-semibold">${escapeHtml(q.options[ans.selectedIndex].text)}</span></p>
+          </div>
+          <span class="font-black text-sm shrink-0">${isCorrect ? "✓" : "✕"}</span>
+        `;
+        reviewList.appendChild(item);
+      });
+
+      // Prepare payload to store
+      const responsePayload = {
+        name: studentInfo.name,
+        course: studentInfo.course,
+        score: score,
+        answers: studentAnswers,
+        timestamp: new Date().toISOString()
+      };
+
+      // Store in memory backup instantly
+      localBackupResponses.push(responsePayload);
+      updateTotalBadge();
+
+      // Save to Firebase Cloud
+      if (typeof window.saveResponseToCloud === 'function') {
+        window.saveResponseToCloud(responsePayload);
+      }
+    }
+
+    // UPDATE BADGE TOTAL
+    function updateTotalBadge() {
+      let cloud = typeof window.getGlobalResponses === 'function' ? window.getGlobalResponses() : [];
+      let combined = mergeResponses(cloud, localBackupResponses);
+      document.getElementById("badge-total-responses").textContent = combined.length;
+    }
+
+    // MERGE RESPONSES UNIQUE
+    function mergeResponses(cloudArr, localArr) {
+      const map = new Map();
+      cloudArr.forEach(r => {
+        const key = `${r.name}-${r.course}-${r.timestamp || r.score}`;
+        map.set(key, r);
+      });
+      localArr.forEach(r => {
+        const key = `${r.name}-${r.course}-${r.timestamp || r.score}`;
+        if (!map.has(key)) {
+          map.set(key, r);
+        }
+      });
+      return Array.from(map.values());
+    }
+
+    // INJECT DEMO RESPONSES FOR TEACHER DEMONSTRATION
+    function injectDemoResponses() {
+      const sampleNames = ["Sofía Martínez", "Lucas Gómez", "Valentina Rossi", "Mateo Fernández", "Camila Silva", "Joaquín López", "Martina Díaz", "Thiago Pérez"];
+      const sampleCourses = ["1° año A", "2° año B", "3° año A", "4° año C", "5° año B", "6° año A"];
+
+      for (let i = 0; i < 6; i++) {
+        const randomScore = Math.floor(Math.random() * 5) + 6; // 6 to 10 score
+        const mockAnswers = questionsData.map((q, idx) => {
+          const isCorrect = Math.random() > 0.3;
+          return {
+            questionIndex: idx,
+            selectedIndex: isCorrect ? q.options.findIndex(o => o.isCorrect) : 0,
+            isCorrect: isCorrect
+          };
+        });
+
+        const demoPayload = {
+          name: sampleNames[i % sampleNames.length],
+          course: sampleCourses[i % sampleCourses.length],
+          score: randomScore,
+          answers: mockAnswers,
+          timestamp: new Date(Date.now() - i * 60000).toISOString()
+        };
+
+        localBackupResponses.push(demoPayload);
+        if (typeof window.saveResponseToCloud === 'function') {
+          window.saveResponseToCloud(demoPayload);
+        }
+      }
+
+      updateTotalBadge();
+      renderCharts();
+    }
+
+    // RENDER CHARTS & DASHBOARD ANALYTICS
+    function renderCharts() {
+      // Collect responses (combining cloud and local fallback)
+      let cloudResponses = typeof window.getGlobalResponses === 'function' ? window.getGlobalResponses() : [];
+      let responses = mergeResponses(cloudResponses, localBackupResponses);
+
+      const selectedCourse = document.getElementById("filter-course").value;
+      
+      // Filter by course if selected
+      const filteredResponses = selectedCourse === "ALL" 
+        ? responses 
+        : responses.filter(r => r.course === selectedCourse);
+
+      const totalCount = filteredResponses.length;
+      document.getElementById("kpi-total-students").textContent = totalCount;
+
+      if (totalCount === 0) {
+        document.getElementById("kpi-avg-score").textContent = "0 / 10";
+        document.getElementById("kpi-hardest-q").textContent = "Sin respuestas";
+        document.getElementById("kpi-hardest-pct").textContent = "0% aciertos";
+        document.getElementById("live-student-list").innerHTML = `<p class="text-slate-400 text-center py-6">Aún no hay respuestas registradas.</p>`;
+        
+        if (chartQuestionsInstance) chartQuestionsInstance.destroy();
+        if (chartCoursesInstance) chartCoursesInstance.destroy();
+        return;
+      }
+
+      // Calculate Average Score
+      const totalScoreSum = filteredResponses.reduce((acc, r) => acc + (r.score || 0), 0);
+      const avgScore = (totalScoreSum / totalCount).toFixed(1);
+      document.getElementById("kpi-avg-score").textContent = `${avgScore} / 10`;
+
+      // Calculate Question Accuracy Rates
+      const qCorrectCounts = new Array(10).fill(0);
+      filteredResponses.forEach(r => {
+        if (r.answers && Array.isArray(r.answers)) {
+          r.answers.forEach(a => {
+            if (a.isCorrect && a.questionIndex >= 0 && a.questionIndex < 10) {
+              qCorrectCounts[a.questionIndex]++;
+            }
+          });
+        }
+      });
+
+      const qPercentages = qCorrectCounts.map(count => Math.round((count / totalCount) * 100));
+
+      // Find Hardest Question
+      let minPct = 101;
+      let hardestIndex = 0;
+      qPercentages.forEach((pct, idx) => {
+        if (pct < minPct) {
+          minPct = pct;
+          hardestIndex = idx;
+        }
+      });
+
+      document.getElementById("kpi-hardest-q").textContent = `P${hardestIndex + 1}: ${questionsData[hardestIndex].question.substring(0, 30)}...`;
+      document.getElementById("kpi-hardest-pct").textContent = `${minPct}% de aciertos`;
+
+      // Render Bar Chart: Question Accuracy
+      const ctxQuestions = document.getElementById("chart-questions").getContext("2d");
+      if (chartQuestionsInstance) chartQuestionsInstance.destroy();
+
+      chartQuestionsInstance = new Chart(ctxQuestions, {
+        type: 'bar',
+        data: {
+          labels: ['P1', 'P2', 'P3', 'P4', 'P5', 'P6', 'P7', 'P8', 'P9', 'P10'],
+          datasets: [{
+            label: '% de Aciertos',
+            data: qPercentages,
+            backgroundColor: qPercentages.map(p => p >= 70 ? 'rgba(13, 148, 136, 0.85)' : (p >= 50 ? 'rgba(217, 119, 6, 0.85)' : 'rgba(225, 29, 72, 0.85)')),
+            borderRadius: 8,
+            borderSkipped: false
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 100,
+              ticks: { callback: value => value + '%' }
+            }
+          },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                title: (items) => `Pregunta ${items[0].dataIndex + 1}`,
+                label: (item) => `Aciertos: ${item.raw}% de los estudiantes`
+              }
+            }
+          }
+        }
+      });
+
+      // Render Doughnut Chart: Participation per Course
+      const courseCounts = {};
+      responses.forEach(r => {
+        if (r.course) {
+          courseCounts[r.course] = (courseCounts[r.course] || 0) + 1;
+        }
+      });
+
+      const courseLabels = Object.keys(courseCounts);
+      const courseData = Object.values(courseCounts);
+
+      const ctxCourses = document.getElementById("chart-courses").getContext("2d");
+      if (chartCoursesInstance) chartCoursesInstance.destroy();
+
+      chartCoursesInstance = new Chart(ctxCourses, {
+        type: 'doughnut',
+        data: {
+          labels: courseLabels.length > 0 ? courseLabels : ['Sin Datos'],
+          datasets: [{
+            data: courseData.length > 0 ? courseData : [1],
+            backgroundColor: [
+              '#0d9488', '#d97706', '#7e22ce', '#2563eb', 
+              '#e11d48', '#059669', '#ca8a04', '#4f46e5'
+            ]
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 10 } } }
+          }
+        }
+      });
+
+      // Render Live Student List
+      const listContainer = document.getElementById("live-student-list");
+      listContainer.innerHTML = "";
+
+      const recentResponses = [...filteredResponses].reverse().slice(0, 10);
+      recentResponses.forEach(r => {
+        const item = document.createElement("div");
+        item.className = "p-2.5 bg-slate-50 border border-slate-200 rounded-lg flex items-center justify-between";
+        item.innerHTML = `
+          <div>
+            <p class="font-bold text-slate-800">${escapeHtml(r.name)}</p>
+            <p class="text-[10px] text-slate-500">${escapeHtml(r.course)}</p>
+          </div>
+          <span class="px-2 py-1 bg-teal-100 text-teal-800 font-extrabold text-xs rounded-md">${r.score}/10</span>
+        `;
+        listContainer.appendChild(item);
+      });
+    }
+
+    // RESTART TRIVIA
+    function restartQuiz() {
+      showSection('registration');
+      document.getElementById("form-student").reset();
+    }
+
+    // QR CODE MODAL FUNCTIONS
+    function openQrModal() {
+      document.getElementById("modal-qr").classList.remove("hidden");
+    }
+
+    function closeQrModal() {
+      document.getElementById("modal-qr").classList.add("hidden");
+    }
+
+    function initQrCode(url) {
+      const container = document.getElementById("qrcode-container");
+      container.innerHTML = "";
+      new QRCode(container, {
+        text: url,
+        width: 160,
+        height: 160,
+        colorDark : "#0f172a",
+        colorLight : "#ffffff",
+        correctLevel : QRCode.CorrectLevel.H
+      });
+    }
+
+    function generateCustomQr() {
+      const urlInput = document.getElementById("input-qr-url").value.trim();
+      if (!urlInput) return;
+      initQrCode(urlInput);
+    }
+
+    // HELPER: ESCAPE HTML
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+    }
+  </script>
+</body>
+</html>
